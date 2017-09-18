@@ -23,7 +23,6 @@ int main()
 	cout << "Enter the name of a file.\nThe number of numbers in the file\nand the first two and the last two numbers will be returned.\n" << endl;
 	cin >> fileName;
 
-	cout << fileName << endl;
 
 	//Opening the file
 	inFile.open(fileName);
@@ -36,6 +35,7 @@ int main()
 
 			inFile >> output;
 
+			
 			//Clearing the input stream of errors
 			if (inFile.fail())
 			{
@@ -44,26 +44,23 @@ int main()
 			}
 			else
 			{
-				cout << output;
-				length++;
+				//Storing the first number
+				if (length == 0)
+				{
+					num1 = output;
+					length++;
+				}
+				//Storing the last number
+				else
+				{
+					num4 = output;
+					length++;
+				}
 			}
 
-
-		}
-		
-		//Resting the input stream to the beginning of the file
-		inFile.clear();
-		inFile.seekg(0, ios::beg);
-
-		//Going through the file again to get the
-		//first, second, second to last, and last numbers in the file.
-		//Which can't be the best way to do this, but I'm stuck.
-		int x = 0;
-		while (!inFile.eof())
-		{
-
 			inFile >> output;
-			//Clearing errors from the input stream
+
+			//Clearing the input stream of error
 			if (inFile.fail())
 			{
 				inFile.clear();
@@ -71,34 +68,25 @@ int main()
 			}
 			else
 			{
-				//First number
-				if (x == 0)
-				{
-					num1 = output;
-				}
-				//Second number
-				if (x == 1)
+				//Storing the second number
+				if (length == 1)
 				{
 					num2 = output;
+					length++;
 				}
-				//Second to last number
-				if (x == (length - 2))
+				//Storing the second to last number
+				else
 				{
 					num3 = output;
-				}
-				//Last number
-				if (x == (length - 1))
-				{
-					num4 = output;
+					length++;
 				}
 			}
 
-			x++;
+
 		}
 
-
-
 	}
+	
 	//Close the file
 	inFile.close();
 
@@ -107,4 +95,3 @@ int main()
 	cout << "The last two numbers in the file are: " << num3 << " " << num4 << endl;
 	return 0;
 }
-	
