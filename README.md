@@ -1,2 +1,2 @@
-# blank
-blank-repository-shell
+Ryan Parziale
+Lab1- Process a List of Numbers
